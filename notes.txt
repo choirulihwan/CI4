@@ -1,0 +1,36 @@
+[STEP BY STEP]
+- install codeigniter 4
+    + composer create-project codeigniter4/appstarter backend
+- jalankan project
+    + php spark serve
+
+[DATABASE CONFIGURATION]
+- rename file env => .env 
+- sesuaikan konfigurasi database
+
+[MEMBUAT TABLE]
+- membuat migration
+    + php spark make:migration [nama_table]
+- sesuaikan file migration di folder app/Databse/Migrations
+- membuat table
+    + php spark migrate
+
+[MEMBUAT MODEL]
+- membuat model
+    + php spark make:model ProductModel
+
+[MEMBUAT CONTROLLER]
+- membuat controller restful
+    + php spark make:controller Product --restful
+
+[MEMBUAT FILTER CORS]
+- agar bisa diakses dari domain tertentu, kita perlu membuat filter cors
+    + php spark make:filter Cors
+
+
+[TOOLS2 APLIKASI]
+- codeigniter 4
+- Vue js (babel, router)
+- bulma.css
+- axios (komunikasi dgn API)
+
