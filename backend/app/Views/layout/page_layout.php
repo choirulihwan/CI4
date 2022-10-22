@@ -20,7 +20,7 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 		<div class="container">
 			<a class="navbar-brand" href="<?= base_url() ?>">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,8 +34,9 @@
 					<li class="nav-item">	
 						<a class="nav-link" href="<?= base_url('mancategory') ?>">Mata pelajaran</a>	
 					</li>			
-				</ul>
+				</ul>				
 			</div>
+			<span class="navbar-text my-2 my-lg-0" style="color:#000"><strong>Manajemen CBT (Computer Based Test)</strong></span>
 		</div>
 	</nav>
 
@@ -43,25 +44,18 @@
 		$uri = service('uri');
 	?>
 
-	<header class="jumbotron jumbotron-fluid">
+	<!-- <header class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="h1">
-					<?php 
-					if ($uri->getSegment(1) === 'manquiz'):
-						$jdl_menu = 'List Pertanyaan';
-					elseif ($uri->getSegment(1) === 'mancategory'):
-    					$jdl_menu = 'List Pelajaran';
-					endif;	
-					echo $jdl_menu;
-					?>
+					<h1 class="h1">					
+					
 					</h1>
-					<!-- Manajemen CBT (Computer Based Test) -->
+					
 				</div>
 			</div>
 		</div>
-    </header>
+    </header> -->
     
     <?= $this->renderSection('content') ?>
 

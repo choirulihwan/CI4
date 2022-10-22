@@ -1,14 +1,16 @@
 <?= $this->extend('layout/page_layout') ?>
 
 <?= $this->section('content') ?>
-<div class="container">
+<div class="container mt-3">
+    
     <div class="card">
+        <form method="post" action="">
         <div class="card-header">
             Filter Pertanyaan
         </div>
         <div class="card-body">
             <h5 class="card-title"></h5>
-            <form method="post" action="">
+            
                 <div class="form-group row">
                     <label for="question" class="col-sm-2 col-form-label">Mata Pelajaran</label>
                     <div class="col-sm-10">
@@ -30,15 +32,14 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Tampilkan</button>
-                    </div>
-                </div>
-            </form>
         </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Tampilkan</button>
+        </div>
+        </form>
     </div>
+    
 
     <hr />
     <div class="card">
