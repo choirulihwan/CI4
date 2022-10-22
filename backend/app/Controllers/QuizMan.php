@@ -12,9 +12,21 @@ class QuizMan extends BaseController
     public function index()
     {
         $model = new QuestionModel();
-        $data = $model->findAll();
+        $data = $model->where('id_category', '1')->findAll();
+
+        $ocat = new QCategoryModel();
+        $cat = $ocat->findAll();
+
+        if ($this->request->getPost('category')):
+            $cat_selected = $this->request->getPost('category');
+            $data = $model->where('id_category', $cat_selected)->findAll();            
+        else:
+            $cat_selected = '';
+        endif;
         
-        $result = ['data' => $data];        
+        $result = ['data' => $data,
+                    'cat'   => $cat,
+                    'cat_selected' => $cat_selected];        
         return view('quiz_list', $result);
     }
 

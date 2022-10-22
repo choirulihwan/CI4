@@ -39,12 +39,25 @@
 		</div>
 	</nav>
 
+	<?php
+		$uri = service('uri');
+	?>
 
 	<header class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="h1">Manajemen CBT (Computer Based Test)</h1>
+					<h1 class="h1">
+					<?php 
+					if ($uri->getSegment(1) === 'manquiz'):
+						$jdl_menu = 'List Pertanyaan';
+					elseif ($uri->getSegment(1) === 'mancategory'):
+    					$jdl_menu = 'List Pelajaran';
+					endif;	
+					echo $jdl_menu;
+					?>
+					</h1>
+					<!-- Manajemen CBT (Computer Based Test) -->
 				</div>
 			</div>
 		</div>
