@@ -35,9 +35,31 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index');
+
+//manajemen quiz
+$routes->group('manquiz', function($routes){
+	$routes->get('/', 'QuizMan');	
+    $routes->add('new', 'QuizMan::create');	
+    $routes->add('edit/(:segment)', 'QuizMan::edit/$1');	
+    $routes->get('delete/(:segment)', 'QuizMan::delete/$1');	
+});
+
+//manajemen matapelajaran
+$routes->group('mancategory', function($routes){
+	$routes->get('/', 'QCategoryMan');	
+    $routes->add('new', 'QCategoryMan::create');	
+    $routes->add('edit/(:segment)', 'QCategoryMan::edit/$1');	
+    $routes->get('delete/(:segment)', 'QCategoryMan::delete/$1');	
+});
+
+
+
+//API
 $routes->resource('product');
 $routes->resource('todo');
+$routes->resource('quiz');
+$routes->resource('category');
 
 /*
  * --------------------------------------------------------------------
