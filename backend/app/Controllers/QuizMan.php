@@ -39,10 +39,12 @@ class QuizMan extends BaseController
             
             $model = new OptionModel();
             foreach($this->request->getPost('pilihan') as $v):
-                $model->insert([
-                    "id_question" => $last_id,
-                    "title" => $v            
-                ]);
+                if(trim($v) != ''):
+                    $model->insert([
+                        "id_question" => $last_id,
+                        "title" => $v            
+                    ]);
+                endif;
             endforeach;
             
             return redirect('manquiz');
@@ -82,10 +84,12 @@ class QuizMan extends BaseController
             //delete and insert all options
             $options->delete_by_idquestion($id);
             foreach($this->request->getPost('pilihan') as $v):
-                $options->insert([
-                    "id_question" => $id,
-                    "title" => $v            
-                ]);
+                if(trim($v) != ''):
+                    $options->insert([
+                        "id_question" => $id,
+                        "title" => $v            
+                    ]);
+                endif;
             endforeach;
 
             return redirect('manquiz');

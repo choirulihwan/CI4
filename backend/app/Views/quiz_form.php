@@ -59,7 +59,8 @@ endif;
             <div class="col-sm-10">
                 <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan a" value="<?=($uri->getSegment(2) === 'edit') ? $options[0]['title'] : ''?>">
                 <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan b" value="<?=($uri->getSegment(2) === 'edit') ? $options[1]['title'] : ''?>">
-                <input type="text" class="form-control" name="pilihan[]" placeholder="Pilihan c" value="<?=($uri->getSegment(2) === 'edit') ? $options[2]['title'] : ''?>">
+                <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan c" value="<?=($uri->getSegment(2) === 'edit') ? $options[2]['title'] : ''?>">
+                <input type="text" class="form-control" name="pilihan[]" placeholder="Pilihan d" value="<?=(($uri->getSegment(2) === 'edit') && (count($options) == 4)) ? $options[3]['title'] : ''?>">
             </div>
         </div>
         <div class="form-group row">
