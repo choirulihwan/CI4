@@ -11,17 +11,19 @@ class QuizMan extends BaseController
 {
     public function index()
     {
+        $session = \Config\Services::session();
+        $cat_selected = $session->getFlashdata('cat_selected');    
+        if(!$cat_selected) $cat_selected = '1';
+
         $model = new QuestionModel();
-        $data = $model->where('id_category', '1')->findAll();
+        $data = $model->where('id_category', $cat_selected)->findAll();
 
         $ocat = new QCategoryModel();
         $cat = $ocat->findAll();
 
         if ($this->request->getPost('category')):
             $cat_selected = $this->request->getPost('category');
-            $data = $model->where('id_category', $cat_selected)->findAll();            
-        else:
-            $cat_selected = '';
+            $data = $model->where('id_category', $cat_selected)->findAll();
         endif;
         
         $result = ['data' => $data,
@@ -32,6 +34,7 @@ class QuizMan extends BaseController
 
     public function create()
     {
+        $session = \Config\Services::session();
         $validation =  \Config\Services::validation();
         $validation->setRules(['question' => 'required']);
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -59,6 +62,7 @@ class QuizMan extends BaseController
                 endif;
             endforeach;
             
+            $session->setFlashdata('cat_selected', $this->request->getPost('category'));
             return redirect('manquiz');
             exit;
         }
@@ -68,6 +72,8 @@ class QuizMan extends BaseController
 
     public function edit($id = null)
     {
+        $session = \Config\Services::session();
+
         $ocat = new QCategoryModel();
         $cat = $ocat->findAll();
         $data['cat'] = $cat;
@@ -104,6 +110,7 @@ class QuizMan extends BaseController
                 endif;
             endforeach;
 
+            $session->setFlashdata('cat_selected', $this->request->getPost('category'));
             return redirect('manquiz');
             exit;
         }
@@ -112,8 +119,13 @@ class QuizMan extends BaseController
     }
 
     public function delete($id){
+        $session = \Config\Services::session();
+
         $model = new QuestionModel();
-        $model->delete($id);
+        $data = $model->where('id', $id)->first();
+
+        $session->setFlashdata('cat_selected', $data['id_category']);
+        $model->delete($id);        
         return redirect('manquiz');
     }
 }
