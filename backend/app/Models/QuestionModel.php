@@ -44,14 +44,18 @@ class QuestionModel extends Model
     //     $this->db = \Config\Database::connect();
     // }
     
-    public function getQuestionComplete($cat = null) {
+    public function getQuestionComplete($cat = null, $jns = null) {
         $this->db = \Config\Database::connect();
         $builder = $this->db->table('questions a'); 
-        $builder->join('options b', 'a.id = b.id_question');        
+        $builder->join('options b', 'a.id = b.id_question', 'left');        
         $builder->select('a.title as question, a.answer, b.title as options, a.id');
         
         if($cat != null):
             $builder->where('id_category', $cat);
+        endif;
+
+        if($jns != null):
+            $builder->where('jns_pertanyaan', $jns);
         endif;
 
         $result = $builder->get()->getResult();       

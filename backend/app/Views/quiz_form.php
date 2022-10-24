@@ -57,7 +57,7 @@ endif;
                 </div>
 
                 <div class="form-group row">
-                    <label for="question" class="col-sm-2 col-form-label"></label>
+                    <label for="question" class="col-sm-2 col-form-label">Jenis pertanyaan</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="jns" id="jns">
                     <?php 

@@ -29,11 +29,11 @@ class Quiz extends ResourceController
      *
      * @return mixed
      */
-    public function show($id = null)
+    public function show($id = null, $jns = null)
     {        
         $limit = 20;
         $model = new QuestionModel();
-        $data = $model->getQuestionComplete($id);
+        $data = $model->getQuestionComplete($id, $jns);
         
         $jml = count($data);
         if ($jml < $limit):
@@ -46,7 +46,8 @@ class Quiz extends ResourceController
             $data2[$i] = $data[$i];            
         endfor;
         
-        return ($data2) ? $this->respond($data2) : $this->failNotFound();         
+        return ($data2) ? $this->respond($data2) : $this->failNotFound();   
+        // return $data;      
     }
 
     /**
