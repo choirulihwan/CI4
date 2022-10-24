@@ -48,7 +48,8 @@ class QuizMan extends BaseController
             $model->insert([
                 "title" => $this->request->getPost('question'),
                 "answer" => $this->request->getPost('answer'), 
-                "id_category" => $this->request->getPost('category')                
+                "id_category" => $this->request->getPost('category'),
+                "jns_pertanyaan"    => $this->request->getPost('jns'),
             ]);
             $last_id = $model->insertID();
             
@@ -96,7 +97,8 @@ class QuizMan extends BaseController
             $model->update($id, [
                 "title" => $this->request->getPost('question'),
                 "answer" => $this->request->getPost('answer'),
-                "id_category" => $this->request->getPost('category')      
+                "id_category" => $this->request->getPost('category'),
+                "jns_pertanyaan"    => $this->request->getPost('jns'), 
             ]);
 
             //delete and insert all options
