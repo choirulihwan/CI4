@@ -31,7 +31,7 @@ class Quiz extends ResourceController
      */
     public function show($id = null)
     {        
-        $limit = 10;
+        $limit = 20;
         $model = new QuestionModel();
         $data = $model->getQuestionComplete($id);
         
