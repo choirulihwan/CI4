@@ -14,7 +14,7 @@ class QuestionModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'answer', 'id_category', 'jns_pertanyaan'];
+    protected $allowedFields    = ['title', 'answer', 'id_category', 'jns_pertanyaan', 'kelas'];
 
     // Dates
     protected $useTimestamps = false;
@@ -44,7 +44,7 @@ class QuestionModel extends Model
     //     $this->db = \Config\Database::connect();
     // }
     
-    public function getQuestionComplete($cat = null, $jns = null) {
+    public function getQuestionComplete($cat = null, $jns = null, $kelas = null) {
         $this->db = \Config\Database::connect();
         $builder = $this->db->table('questions a'); 
         $builder->join('options b', 'a.id = b.id_question', 'left');        
@@ -56,6 +56,10 @@ class QuestionModel extends Model
 
         if($jns != null):
             $builder->where('jns_pertanyaan', $jns);
+        endif;
+
+        if($kelas != null):
+            $builder->where('kelas', $kelas);
         endif;
 
         $result = $builder->get()->getResult();       

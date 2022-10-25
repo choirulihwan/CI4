@@ -13,7 +13,9 @@ class QuizMan extends BaseController
     {
         $session = \Config\Services::session();
         $cat_selected = $session->getFlashdata('cat_selected');    
+        $kelas_selected = $session->getFlashdata('kelas_selected');    
         if(!$cat_selected) $cat_selected = '1';
+        if(!$kelas_selected) $kelas_selected = '31';
 
         $model = new QuestionModel();
         $data = $model->where('id_category', $cat_selected)->findAll();
@@ -21,20 +23,25 @@ class QuizMan extends BaseController
         $ocat = new QCategoryModel();
         $cat = $ocat->findAll();
 
-        if ($this->request->getPost('category')):
+        if (($this->request->getPost('category')) || ($this->request->getPost('kelas'))):
             $cat_selected = $this->request->getPost('category');
-            $data = $model->where('id_category', $cat_selected)->findAll();
+            $kelas_selected = $this->request->getPost('kelas');
+            $data = $model->where('id_category', $cat_selected)
+                    ->where('kelas', $kelas_selected)
+                    ->findAll();
         endif;
         
         $result = ['data' => $data,
                     'cat'   => $cat,
-                    'cat_selected' => $cat_selected];        
+                    'cat_selected' => $cat_selected,
+                    'kelas_selected' => $kelas_selected];        
         return view('quiz_list', $result);
     }
 
     public function create()
     {
         $session = \Config\Services::session();
+        
         $validation =  \Config\Services::validation();
         $validation->setRules(['question' => 'required']);
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -50,6 +57,7 @@ class QuizMan extends BaseController
                 "answer" => $this->request->getPost('answer'), 
                 "id_category" => $this->request->getPost('category'),
                 "jns_pertanyaan"    => $this->request->getPost('jns'),
+                "kelas" => $this->request->getPost('kelas'),
             ]);
             $last_id = $model->insertID();
             
@@ -64,6 +72,7 @@ class QuizMan extends BaseController
             endforeach;
             
             $session->setFlashdata('cat_selected', $this->request->getPost('category'));
+            $session->setFlashdata('kelas_selected', $this->request->getPost('kelas'));
             return redirect('manquiz');
             exit;
         }
@@ -99,6 +108,7 @@ class QuizMan extends BaseController
                 "answer" => $this->request->getPost('answer'),
                 "id_category" => $this->request->getPost('category'),
                 "jns_pertanyaan"    => $this->request->getPost('jns'), 
+                "kelas" => $this->request->getPost('kelas'),
             ]);
 
             //delete and insert all options
@@ -113,6 +123,7 @@ class QuizMan extends BaseController
             endforeach;
 
             $session->setFlashdata('cat_selected', $this->request->getPost('category'));
+            $session->setFlashdata('kelas_selected', $this->request->getPost('kelas'));
             return redirect('manquiz');
             exit;
         }
@@ -127,6 +138,7 @@ class QuizMan extends BaseController
         $data = $model->where('id', $id)->first();
 
         $session->setFlashdata('cat_selected', $data['id_category']);
+        $session->setFlashdata('kelas_selected', $data['kelas']);
         $model->delete($id);        
         return redirect('manquiz');
     }

@@ -4,24 +4,16 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\QuestionModel;
 
-class Quiz extends ResourceController
+class Kelas extends ResourceController
 {
     use ResponseTrait;
     public function index()
     {
-        $limit = 10;
-        $model = new QuestionModel();
-        $data = $model->getQuestionComplete();
-        shuffle($data);
-        
-        for($i=0;$i<$limit;$i++):
-            $data2[$i] = $data[$i];
-        endfor;
-        
-        return ($data2) ? $this->respond($data2) : $this->failNotFound();   
-        
+        $myconfig = new \Config\MyConfig();
+        $data = $myconfig->kelas;
+     
+        return ($data) ? $this->respond($data) : $this->failNotFound();           
     }
 
     /**
@@ -29,25 +21,9 @@ class Quiz extends ResourceController
      *
      * @return mixed
      */
-    public function show($id = null, $jns = null, $kelas = null)
+    public function show($id = null, $jns = null)
     {        
-        $limit = 20;
-        $model = new QuestionModel();
-        $data = $model->getQuestionComplete($id, $jns, $kelas);
         
-        $jml = count($data);
-        if ($jml < $limit):
-            $limit = $jml;
-        endif;
-        
-        shuffle($data);
-        
-        for($i=0;$i<$limit;$i++):            
-            $data2[$i] = $data[$i];            
-        endfor;
-        
-        return ($data2) ? $this->respond($data2) : $this->failNotFound();   
-        // return $data;      
     }
 
     /**

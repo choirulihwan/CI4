@@ -54,12 +54,12 @@ $routes->group('mancategory', function($routes){
 });
 
 
-
 //API
 $routes->resource('product');
 $routes->resource('todo');
 $routes->resource('quiz');
 $routes->resource('category');
+$routes->resource('kelas');
 
 /*
  * --------------------------------------------------------------------

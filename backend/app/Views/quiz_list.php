@@ -12,7 +12,7 @@
             <h5 class="card-title"></h5>
             
                 <div class="form-group row">
-                    <label for="question" class="col-sm-2 col-form-label">Mata Pelajaran</label>
+                    <label for="question" class="col-sm-2 col-form-label">Pelajaran</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="category" id="category">
                             <?php 
@@ -26,6 +26,30 @@
                         
                     ?>
                             <option value="<?=$v['id']?>" <?=$selected?>><?=$v['category']?></option>
+                            <?php
+                    endforeach;
+                    ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="kelas" id="kelas">
+                    <?php 
+                    $myconfig = new \Config\MyConfig();
+                    $kelas = $myconfig->kelas;
+                    
+                    foreach($kelas as $v):
+                        if($v['id'] == $kelas_selected):
+                            $selected = 'selected';
+                        else:
+                            $selected = '';
+                        endif;
+                        
+                    ?>
+                            <option value="<?=$v['id']?>" <?=$selected?>><?=$v['nama']?></option>
                             <?php
                     endforeach;
                     ?>
