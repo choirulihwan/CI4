@@ -19,12 +19,13 @@ class Users extends BaseController
     public function login() 
     {
 
-        $validation =  \Config\Services::validation();
-        $validation->setRules([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-        $isDataValid = $validation->withRequest($this->request)->run();
+        // $validation =  \Config\Services::validation();
+        // $validation->setRules([
+        //     'username' => 'required',
+        //     'password' => 'required'
+        // ]);
+        // $isDataValid = $validation->withRequest($this->request)->run();
+        $isDataValid = true;
         
         if($isDataValid):
             $users = new UsersModel();
@@ -50,12 +51,9 @@ class Users extends BaseController
                 session()->setFlashdata('error', 'Username & Password Salah');
                 print "user gak ada";exit;
                 return redirect()->back();
-            } 
-        else:
-            // print "input ndak valid";exit;       
+            }        
         endif;
-
-
+        
         return view('login_form');
     }
 
