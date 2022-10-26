@@ -52,7 +52,7 @@ class Users extends BaseController
                 return redirect()->back();
             } 
         else:
-            print "input ndak valid";exit;       
+            // print "input ndak valid";exit;       
         endif;
 
 
