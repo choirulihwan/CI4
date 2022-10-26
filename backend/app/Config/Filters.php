@@ -46,7 +46,7 @@ class Filters extends BaseConfig
 					'users/login',
 					'users/logout',
                     'users/password/*',
-                    'quiz',
+                    'quiz/*',
                     'category',
                     'kelas'
 				]
