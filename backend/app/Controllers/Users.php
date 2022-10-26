@@ -39,13 +39,16 @@ class Users extends BaseController
                         'nama' => $dataUser['nama'],
                         'logged_in' => TRUE
                     ]);
+                    print "pass benar";exit;
                     return redirect()->to(base_url());
                 } else {
                     session()->setFlashdata('error', 'Username & Password Salah');
+                    print "pass salah";exit;
                     return redirect()->back();
                 }
             } else {
                 session()->setFlashdata('error', 'Username & Password Salah');
+                print "user gak ada";exit;
                 return redirect()->back();
             }        
         endif;
