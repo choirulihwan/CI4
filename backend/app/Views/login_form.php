@@ -34,6 +34,12 @@
                 <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
                 <!-- <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> -->
 
+                <?php if (!empty(session()->getFlashdata('error'))) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo session()->getFlashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
                 <label for="inputEmail" class="sr-only">Email address</label>
                 <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 

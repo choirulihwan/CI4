@@ -46,7 +46,7 @@ class Users extends BaseController
                     return redirect()->to('/users/login');
                 }
             } else {
-                session()->setFlashdata('error', 'Username & Password Salah');                
+                session()->setFlashdata('error', 'Username belum terdaftar');                
                 return redirect()->to('/users/login');
             }         
         endif;
