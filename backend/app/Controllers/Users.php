@@ -50,7 +50,9 @@ class Users extends BaseController
                 session()->setFlashdata('error', 'Username & Password Salah');
                 print "user gak ada";exit;
                 return redirect()->back();
-            }        
+            } 
+        else:
+            print "input ndak valid";exit;       
         endif;
 
 
