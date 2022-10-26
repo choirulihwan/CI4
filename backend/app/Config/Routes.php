@@ -53,6 +53,14 @@ $routes->group('mancategory', function($routes){
     $routes->get('delete/(:segment)', 'QCategoryMan::delete/$1');	
 });
 
+//manajemen users
+$routes->group('users', function($routes){
+	$routes->get('/', 'Users');	
+    $routes->get('password/(:segment)', 'Users::setpassword/$1');	    	
+    $routes->add('login', 'Users::login');	    	
+    $routes->get('logout', 'Users::logout');	    	
+});
+
 
 //API
 $routes->resource('product');

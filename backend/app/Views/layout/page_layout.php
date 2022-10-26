@@ -29,10 +29,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="<?= base_url('manquiz') ?>">Quiz</a>						
+						<a class="nav-link" href="<?=base_url('manquiz') ?>">Quiz</a>						
 					</li>
 					<li class="nav-item">	
-						<a class="nav-link" href="<?= base_url('mancategory') ?>">Mata pelajaran</a>	
+						<a class="nav-link" href="<?=base_url('mancategory') ?>">Mata pelajaran</a>	
+					</li>
+					<li class="nav-item">	
+						<a class="nav-link" href="<?=base_url('users/logout') ?>">Sign out</a>	
 					</li>			
 				</ul>				
 			</div>
