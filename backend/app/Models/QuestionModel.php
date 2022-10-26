@@ -44,6 +44,31 @@ class QuestionModel extends Model
     //     $this->db = \Config\Database::connect();
     // }
     
+    public function getKelas() {
+        $db = \Config\Database::connect();
+        $builder = $db->table('questions'); 
+        $builder->distinct();
+        $builder->select('kelas');
+        $result = $builder->get()->getResult();  
+        
+        $myconfig = new \Config\MyConfig();
+        $kelas = $myconfig->kelas;
+
+        if(!empty($result)):            
+            foreach($result as $k => $v):
+                foreach($kelas as $k2 => $v2):
+                    if($v->kelas == $v2['id']):
+                        $result2[$k]['id'] = $v->kelas;
+                        $result2[$k]['nama'] = $v2['nama'];
+                    endif;
+                endforeach;
+            endforeach;
+        endif;
+
+        return $result2;
+        // return $builder->getCompiledSelect();
+    }
+
     public function getQuestionComplete($cat = null, $jns = null, $kelas = null) {
         $this->db = \Config\Database::connect();
         $builder = $this->db->table('questions a'); 

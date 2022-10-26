@@ -4,15 +4,17 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
+use App\Models\QuestionModel;
 
 class Kelas extends ResourceController
 {
     use ResponseTrait;
     public function index()
     {
-        $myconfig = new \Config\MyConfig();
-        $data = $myconfig->kelas;
-     
+        // $myconfig = new \Config\MyConfig();
+        // $data = $myconfig->kelas;
+        $model = new QuestionModel();
+        $data = $model->getKelas();
         return ($data) ? $this->respond($data) : $this->failNotFound();           
     }
 
