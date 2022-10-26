@@ -18,14 +18,13 @@ class Users extends BaseController
 
     public function login() 
     {
-
-        // $validation =  \Config\Services::validation();
-        // $validation->setRules([
-        //     'username' => 'required',
-        //     'password' => 'required'
-        // ]);
-        // $isDataValid = $validation->withRequest($this->request)->run();
-        $isDataValid = true;
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+        $isDataValid = $validation->withRequest($this->request)->run();
+        
         
         if($isDataValid):
             $users = new UsersModel();
@@ -40,18 +39,16 @@ class Users extends BaseController
                         'nama' => $dataUser['nama'],
                         'logged_in' => TRUE
                     ]);
-                    // print "pass benar";exit;
+                    
                     return redirect()->to(base_url());
                 } else {
-                    session()->setFlashdata('error', 'Username & Password Salah');
-                    // print "pass salah";exit;
-                    return redirect()->back();
+                    session()->setFlashdata('error', 'Username & Password Salah');                    
+                    return redirect()->to('/users/login');
                 }
             } else {
-                session()->setFlashdata('error', 'Username & Password Salah');
-                // print "user gak ada";exit;
-                return redirect()->back();
-            }        
+                session()->setFlashdata('error', 'Username & Password Salah');                
+                return redirect()->to('/users/login');
+            }         
         endif;
 
         return view('login_form');
