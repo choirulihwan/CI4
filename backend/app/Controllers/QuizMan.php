@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\I18n\Time;
+
 use App\Models\OptionModel;
 use App\Models\QuestionModel;
 use App\Models\QCategoryModel;
@@ -64,6 +66,8 @@ class QuizMan extends BaseController
                 "jns_pertanyaan"    => $this->request->getPost('jns'),
                 "kelas" => $this->request->getPost('kelas'),
                 "sekolah" => $this->request->getPost('sekolah'),
+                "user_input" => $session->get('id_user'),
+                "tgl_input" => Time::now('Asia/Jakarta', 'en_US'),
             ]);
             $last_id = $model->insertID();
             

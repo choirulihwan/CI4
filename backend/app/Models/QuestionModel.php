@@ -14,7 +14,7 @@ class QuestionModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'answer', 'id_category', 'jns_pertanyaan', 'kelas', 'sekolah'];
+    protected $allowedFields    = ['title', 'answer', 'id_category', 'jns_pertanyaan', 'kelas', 'sekolah', 'user_input', 'tgl_input'];
 
     // Dates
     protected $useTimestamps = false;

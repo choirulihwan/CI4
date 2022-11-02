@@ -37,6 +37,7 @@ class Users extends BaseController
                     session()->set([
                         'username' => $dataUser['username'],
                         'nama' => $dataUser['nama'],
+                        'id_user' => $dataUser['id_user'],
                         'logged_in' => TRUE
                     ]);
                     
