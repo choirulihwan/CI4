@@ -13,7 +13,7 @@ endif;
     <form method="post" action="">
         <div class="card">
             <div class="card-header">
-                <h6><?=$judul?> Mata pelajaran</h6>
+                <h6><?=$judul?> Pelajaran</h6>
             </div>
 
             <div class="card-body">
@@ -27,7 +27,7 @@ endif;
                 ?>
 
                 <div class="form-group row">
-                    <label for="category" class="col-sm-2 col-form-label">Nama Matapelajaran</label>
+                    <label for="category" class="col-sm-2 col-form-label">Nama pelajaran</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="category" name="category"
                             placeholder="Input Mata pelajaran"

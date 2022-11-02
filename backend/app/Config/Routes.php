@@ -53,6 +53,14 @@ $routes->group('mancategory', function($routes){
     $routes->get('delete/(:segment)', 'QCategoryMan::delete/$1');	
 });
 
+//manajemen referensi
+$routes->group('manref', function($routes){
+	$routes->add('/', 'Qreferensi');	
+    $routes->add('new', 'Qreferensi::create');	
+    $routes->add('edit/(:segment)', 'Qreferensi::edit/$1');	
+    $routes->get('delete/(:segment)', 'Qreferensi::delete/$1');	
+});
+
 //manajemen users
 $routes->group('users', function($routes){
 	$routes->get('/', 'Users');	

@@ -24,6 +24,30 @@ endif;
                 <h6><?=$judul?> Pertanyaan</h6>
             </div>
             <div class="card-body">
+            <div class="form-group row">
+                    <label for="sekolah" class="col-sm-2 col-form-label">Sekolah</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="sekolah" id="sekolah">
+                            <?php 
+                    $sekolah_selected = '';
+                    
+                    foreach($sekolah as $v):  
+                        if ($uri->getSegment(2) === 'edit'):                      
+                            if($v->id == $question['sekolah']):
+                                $sekolah_selected = 'selected';
+                            else:
+                                $sekolah_selected = '';
+                            endif;
+                        endif;
+                    ?>
+                            <option value="<?=$v->id?>" <?=$sekolah_selected?>><?=$v->keterangan?></option>
+                            <?php
+                    endforeach;
+                    ?>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
                     <div class="col-sm-10">
@@ -72,6 +96,7 @@ endif;
                         </select>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="question" class="col-sm-2 col-form-label">Pertanyaan</label>
                     <div class="col-sm-10">

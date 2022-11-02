@@ -19,23 +19,28 @@
 </head>
 
 <body>
-
+<?php
+$uri = service('uri'); 
+?>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 		<div class="container">
-			<a class="navbar-brand" href="<?= base_url() ?>">Beranda</a>
+			<a class="navbar-brand" href="<?= base_url() ?>"><i class="fa fa-solid fa-home"></i></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item">
+					<li class="nav-item <?=($uri->getSegment(1)) == 'manquiz' ? 'active': ''?>">
 						<a class="nav-link" href="<?=base_url('manquiz') ?>">Pertanyaan</a>						
 					</li>
-					<li class="nav-item">	
+					<li class="nav-item <?=($uri->getSegment(1)) == 'mancategory' ? 'active': ''?>">	
 						<a class="nav-link" href="<?=base_url('mancategory') ?>">Pelajaran</a>	
 					</li>
+					<li class="nav-item <?=($uri->getSegment(1)) == 'manref' ? 'active': ''?>">	
+						<a class="nav-link" href="<?=base_url('manref') ?>">Referensi</a>	
+					</li>
 					<li class="nav-item">	
-						<a class="nav-link" href="<?=base_url('users/logout') ?>">Sign out</a>	
+						<a class="nav-link" href="<?=base_url('users/logout') ?>">Signout</a>	
 					</li>			
 				</ul>				
 			</div>

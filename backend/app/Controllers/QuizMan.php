@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use App\Models\QuestionModel;
 use App\Models\OptionModel;
+use App\Models\QuestionModel;
 use App\Models\QCategoryModel;
+use App\Models\QreferensiModel;
+use App\Controllers\BaseController;
 
 class QuizMan extends BaseController
 {
@@ -50,6 +51,10 @@ class QuizMan extends BaseController
         $cat = $ocat->findAll();
         $data['cat'] = $cat;
 
+        $oref = new QreferensiModel();
+        $sekolah = $oref->findByIdRef('NSS');
+        $data['sekolah'] = $sekolah;
+        
         if($isDataValid){
             $model = new QuestionModel();            
             $model->insert([
@@ -58,6 +63,7 @@ class QuizMan extends BaseController
                 "id_category" => $this->request->getPost('category'),
                 "jns_pertanyaan"    => $this->request->getPost('jns'),
                 "kelas" => $this->request->getPost('kelas'),
+                "sekolah" => $this->request->getPost('sekolah'),
             ]);
             $last_id = $model->insertID();
             
@@ -84,6 +90,10 @@ class QuizMan extends BaseController
     {
         $session = \Config\Services::session();
 
+        $oref = new QreferensiModel();
+        $sekolah = $oref->findByIdRef('NSS');
+        $data['sekolah'] = $sekolah;
+        
         $ocat = new QCategoryModel();
         $cat = $ocat->findAll();
         $data['cat'] = $cat;
@@ -109,6 +119,7 @@ class QuizMan extends BaseController
                 "id_category" => $this->request->getPost('category'),
                 "jns_pertanyaan"    => $this->request->getPost('jns'), 
                 "kelas" => $this->request->getPost('kelas'),
+                "sekolah" => $this->request->getPost('sekolah'),
             ]);
 
             //delete and insert all options
