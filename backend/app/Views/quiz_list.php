@@ -83,7 +83,8 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <table class="table table-striped" id="mytable">
+                    <div style="overflow-x:auto">
+                    <table class="table table-striped nowrap" id="mytable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
@@ -116,9 +117,9 @@
                 ?>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -140,7 +141,9 @@
 
 <script>
 $(document).ready(function() {
-    $('#mytable').DataTable();
+    $('#mytable').DataTable({
+        // "scrollX": true
+    });
 });
 
 function confirmToDelete(el) {

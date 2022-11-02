@@ -20,6 +20,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    <div style="overflow-x:auto">
                     <table class="table table-striped" id="mytable">
                         <thead class="thead-dark">
                             <tr>
@@ -57,6 +58,7 @@
                             ?>
                         </tbody>
                     </table>
+                        </div>
                 </div>
             </div>
 
