@@ -87,6 +87,12 @@ endif;
                             else:
                                 $selected = '';
                             endif;
+                        elseif ($uri->getSegment(2) === 'new'):
+                            if($v['id'] == $id_cat):
+                                $selected = 'selected';
+                            else:
+                                $selected = '';
+                            endif; 
                         endif;
                     ?>
                             <option value="<?=$v['id']?>" <?=$selected?>><?=$v['category']?></option>

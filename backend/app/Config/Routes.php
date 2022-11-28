@@ -40,7 +40,7 @@ $routes->get('/', 'Home::index');
 //manajemen quiz
 $routes->group('manquiz', function($routes){
 	$routes->add('/', 'QuizMan');	
-    $routes->add('new', 'QuizMan::create');	
+    $routes->add('new/(:segment)', 'QuizMan::create/$1');	
     $routes->add('edit/(:segment)', 'QuizMan::edit/$1');	
     $routes->get('delete/(:segment)', 'QuizMan::delete/$1');	
 });

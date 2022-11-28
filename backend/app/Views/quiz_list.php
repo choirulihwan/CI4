@@ -71,7 +71,7 @@
             <!-- Pertanyaan -->
             <ul class="nav nav-pills card-header-pills pull-right">               
                 <li class="nav-item">
-                    <a title="Tambah Pertanyaan" href="<?=site_url('manquiz/new')?>" class="btn btn-success"><i
+                    <a title="Tambah Pertanyaan" href="<?=site_url('manquiz/new/'.$cat_selected)?>" class="btn btn-success"><i
                             class="fa fa-plus"></i> Tambah</a>
                 </li>                
             </ul>
