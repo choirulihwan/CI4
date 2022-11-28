@@ -21,6 +21,7 @@
 <body>
 <?php
 $uri = service('uri'); 
+
 ?>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 		<div class="container">
@@ -38,6 +39,9 @@ $uri = service('uri');
 					</li>
 					<li class="nav-item <?=($uri->getSegment(1)) == 'manref' ? 'active': ''?>">	
 						<a class="nav-link" href="<?=base_url('manref') ?>">Referensi</a>	
+					</li>
+					<li class="nav-item <?=($uri->getSegment(1)) == 'users' ? 'active': ''?>">	
+						<a class="nav-link" href="<?=base_url('users/chpass') ?>">Ganti password</a>	
 					</li>
 					<li class="nav-item">	
 						<a class="nav-link" href="<?=base_url('users/logout') ?>">Signout</a>	

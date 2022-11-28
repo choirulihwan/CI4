@@ -64,7 +64,8 @@ $routes->group('manref', function($routes){
 //manajemen users
 $routes->group('users', function($routes){
 	$routes->get('/', 'Users');	
-    $routes->get('password/(:segment)', 'Users::setpassword/$1');	    	
+    $routes->get('password/(:segment)', 'Users::setpassword/$1');
+    $routes->add('chpass', 'Users::changepassword');	    	
     $routes->add('login', 'Users::login');	    	
     $routes->get('logout', 'Users::logout');	    	
 });

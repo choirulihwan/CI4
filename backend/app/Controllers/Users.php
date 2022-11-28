@@ -9,11 +9,41 @@ class Users extends BaseController
 {
     public function index()
     {
-        //
+        
     }
 
     public function setpassword($pass) {
         echo password_hash($pass, PASSWORD_BCRYPT);
+    }
+
+    public function changepassword()
+    {
+        $session = \Config\Services::session();       
+
+        $validation =  \Config\Services::validation();
+        $validation->setRules(
+            [
+                'old_pass' => 'required',
+                'pass' => 'required',
+                'confirm_pass' => 'required|matches[pass]',            
+            ]
+        );
+        $isDataValid = $validation->withRequest($this->request)->run();
+
+        $data = [
+            'judul' => 'Perubahan Password'
+        ];
+        
+        if($isDataValid){
+            $model = new UsersModel();            
+            $model->update($session->get('id_user'), [                
+                "password" => password_hash($this->request->getPost('pass'), PASSWORD_BCRYPT)
+            ]);
+            
+            $this->logout(); 
+        }
+        
+        return view('changepassword_form', $data);
     }
 
     public function login() 
@@ -37,7 +67,7 @@ class Users extends BaseController
                     session()->set([
                         'username' => $dataUser['username'],
                         'nama' => $dataUser['nama'],
-                        'id_user' => $dataUser['id_user'],
+                        'id_user' => $dataUser['id'],
                         'logged_in' => TRUE
                     ]);
                     
