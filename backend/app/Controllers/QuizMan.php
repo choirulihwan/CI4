@@ -15,8 +15,14 @@ class QuizMan extends BaseController
     public function index()
     {
         $session = \Config\Services::session();
-        $cat_selected = $session->getFlashdata('cat_selected');    
-        $kelas_selected = $session->getFlashdata('kelas_selected');    
+        if (($this->request->getPost('category')) || ($this->request->getPost('kelas'))):
+            $cat_selected = $this->request->getPost('category');
+            $kelas_selected = $this->request->getPost('kelas');
+        else:
+            $cat_selected = $session->getFlashdata('cat_selected');    
+            $kelas_selected = $session->getFlashdata('kelas_selected'); 
+        endif;
+           
         if(!$cat_selected) $cat_selected = '1';
         if(!$kelas_selected) $kelas_selected = '31';
 
@@ -24,17 +30,12 @@ class QuizMan extends BaseController
         $data = $model->where('id_category', $cat_selected)->findAll();
 
         $ocat = new QCategoryModel();
-        $cat = $ocat->findAll();
-
-        if (($this->request->getPost('category')) || ($this->request->getPost('kelas'))):
-            $cat_selected = $this->request->getPost('category');
-            $kelas_selected = $this->request->getPost('kelas');
-            $data = $model->where('id_category', $cat_selected)
-                    ->where('kelas', $kelas_selected)                    
-                    ->orderBy('id', 'DESC')
-                    ->findAll();
-                    
-        endif;
+        $cat = $ocat->findAll();        
+            
+        $data = $model->where('id_category', $cat_selected)
+                ->where('kelas', $kelas_selected)                    
+                ->orderBy('id', 'DESC')
+                ->findAll();
         
         $result = ['data' => $data,
                     'cat'   => $cat,
