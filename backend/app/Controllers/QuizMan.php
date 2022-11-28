@@ -30,8 +30,10 @@ class QuizMan extends BaseController
             $cat_selected = $this->request->getPost('category');
             $kelas_selected = $this->request->getPost('kelas');
             $data = $model->where('id_category', $cat_selected)
-                    ->where('kelas', $kelas_selected)
+                    ->where('kelas', $kelas_selected)                    
+                    ->orderBy('id', 'DESC')
                     ->findAll();
+                    
         endif;
         
         $result = ['data' => $data,
