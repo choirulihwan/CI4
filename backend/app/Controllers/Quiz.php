@@ -5,13 +5,14 @@ namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\QuestionModel;
+use App\Models\QReferensiModel;
 
 class Quiz extends ResourceController
 {
     use ResponseTrait;
     public function index()
     {
-        $limit = 10;
+        $limit = 20;
         $model = new QuestionModel();
         $data = $model->getQuestionComplete();
         shuffle($data);
@@ -31,23 +32,27 @@ class Quiz extends ResourceController
      */
     public function show($id = null, $jns = null, $kelas = null)
     {        
-        $limit = 20;
+        $ref = new QReferensiModel();
+        $data_ref = $ref->where('id_ref', 'JMS')->first();
+        $limit = (int) $data_ref['keterangan'];        
+        $data_rand = $ref->where('id_ref', 'JUS')->first();
+        $rand = $data_rand['keterangan'];
+
         $model = new QuestionModel();
-        $data = $model->getQuestionComplete($id, $jns, $kelas);
+        $data = $model->getQuestionComplete($id, $jns, $kelas, $rand, $limit);
         
         $jml = count($data);
         if ($jml < $limit):
             $limit = $jml;
         endif;
         
-        shuffle($data);
+        // shuffle($data);
         
         for($i=0;$i<$limit;$i++):            
             $data2[$i] = $data[$i];            
         endfor;
         
-        return ($data2) ? $this->respond($data2) : $this->failNotFound();   
-        // return $data;      
+        return ($data2) ? $this->respond($data2) : $this->failNotFound();
     }
 
     /**
