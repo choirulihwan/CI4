@@ -83,14 +83,14 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div style="overflow-x:auto">
-                    <table class="table table-striped nowrap" id="mytable">
+                    <!-- <div style="overflow-x:auto"> -->
+                    <table class="table table-striped nowrap table-responsive" id="mytable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Pertanyaan</th>
-                                <th scope="col">Jawaban</th>
                                 <th scope="col"></th>
+                                <th scope="col">Pertanyaan</th>
+                                <th scope="col">Jawaban</th>                                
                             </tr>
                         </thead>
                         <tbody>
@@ -101,8 +101,6 @@
                 ?>
                             <tr>
                                 <th scope="row"><?=$no?></th>
-                                <td><?=$v['title']?></td>
-                                <td class="text-center"><?=$v['answer']?></td>
                                 <td class="text-center">
                                     <a title="Edit" href="<?=site_url('manquiz/edit/'.$v['id'])?>"
                                         class="btn btn-warning"><i class="fa fa-pencil"></i> </a>
@@ -111,13 +109,16 @@
                                             class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
+                                <td><?=$v['title']?></td>
+                                <td class="text-center"><?=$v['answer']?></td>
+                                
                             </tr>
                             <?php 
                 endforeach;
                 ?>
                         </tbody>
                     </table>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
