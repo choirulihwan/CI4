@@ -18,32 +18,47 @@ class Users extends BaseController
 
     public function changepassword()
     {
-        $session = \Config\Services::session();       
-
+        
         $validation =  \Config\Services::validation();
-        $validation->setRules(
-            [
-                'old_pass' => 'required',
-                'pass' => 'required',
-                'confirm_pass' => 'required|matches[pass]',            
-            ]
-        );
-        $isDataValid = $validation->withRequest($this->request)->run();
 
-        $data = [
-            'judul' => 'Perubahan Password'
-        ];
+        if (strtolower($this->request->getMethod()) === 'post') {   
+            $session = \Config\Services::session();         
+            $validation->setRules(
+                [
+                    'old_pass' => 'required',
+                    'pass' => 'required|min_length[8]',
+                    'confirm_pass' => 'required|matches[pass]',            
+                ]
+            );
+            $isDataValid = $validation->withRequest($this->request)->run();
         
-        if($isDataValid){
-            $model = new UsersModel();            
-            $model->update($session->get('id_user'), [                
-                "password" => password_hash($this->request->getPost('pass'), PASSWORD_BCRYPT)
-            ]);
+            if($isDataValid){
+                $model = new UsersModel();            
+
+                $row = $model->find($session->get('id_user'));
+                $password = $this->request->getPost('old_pass');
+                
+                if (password_verify($password, $row['password'])):          
+                    $model->update($session->get('id_user'), [                
+                        "password" => password_hash($this->request->getPost('pass'), PASSWORD_BCRYPT)
+                    ]);
             
-            $this->logout(); 
-        }
+                    return $this->logout(); 
+                else:
+                    session()->setFlashdata('error', 'Password lama tidak sesuai');                    
+                    return redirect()->to('/users/chpass');
+                endif;
+            }
+        } else {
+            $data = [
+                'judul' => 'Perubahan Password',
+                'validation'    => $validation
+            ];
+    
+            return view('changepassword_form', $data);
+        } 
+
         
-        return view('changepassword_form', $data);
     }
 
     public function login() 

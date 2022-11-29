@@ -3,6 +3,13 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-3">
+    
+    <?php if (!empty(session()->getFlashdata('error'))) : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php echo session()->getFlashdata('error'); ?>
+        </div>
+    <?php endif; ?>
+
     <form method="post" action="">
         <div class="card">
             <div class="card-header">
@@ -13,27 +20,57 @@
                 <div class="form-group row">
                     <label for="old_pass" class="col-sm-2 col-form-label">Password lama</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="old_pass" name="old_pass"
+                        <input type="password" class="form-control <?=($validation->hasError('old_pass') ? 'is-invalid' : '')?>" id="old_pass" name="old_pass"
                             placeholder="Input password lama"
                             required autofocus>
+                        
+                        <?php 
+                        if ($validation->hasError('old_pass')):
+                        ?>
+                            <div class="invalid-feedback d-block">
+                               <?=$validation->getError('old_pass');?>
+                            </div> 
+                        <?php 
+                        endif; 
+                        ?>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="old_pass" class="col-sm-2 col-form-label">Password Baru</label>
+                    <label for="pass" class="col-sm-2 col-form-label">Password Baru</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="pass" name="pass"
+                        <input type="password" class="form-control <?=($validation->hasError('pass') ? 'is-invalid' : '')?>" id="pass" name="pass"
                             placeholder="Input password baru"
                             required>
+                        
+                        <?php 
+                        if ($validation->hasError('pass')):
+                        ?>
+                            <div class="invalid-feedback d-block">
+                               <?=$validation->getError('pass');?>
+                            </div> 
+                        <?php 
+                        endif; 
+                        ?>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="confirm_pass" class="col-sm-2 col-form-label">Password Konfirmasi</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="confirm_pass" name="confirm_pass"
+                        <input type="password" class="form-control <?=($validation->hasError('confirm_pass') ? 'is-invalid' : '')?>" id="confirm_pass" name="confirm_pass"
                             placeholder="Input password konfirmasi"
-                            required>
+                            required>                        
+                        <?php 
+                        if ($validation->hasError('confirm_pass')):
+                        ?>
+                            <div class="invalid-feedback d-block">
+                               <?=$validation->getError('confirm_pass');?>
+                            </div> 
+                        <?php 
+                        endif; 
+                        ?>
+                        
                     </div>
                 </div>
             </div>
