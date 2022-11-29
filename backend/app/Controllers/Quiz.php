@@ -5,7 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\QuestionModel;
-use App\Models\QReferensiModel;
+use App\Models\QreferensiModel;
 
 class Quiz extends ResourceController
 {
