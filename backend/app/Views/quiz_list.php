@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <!-- <div style="overflow-x:auto"> -->
-                    <table class="table table-striped nowrap table-responsive" id="mytable">
+                    <table class="table table-striped nowrap" id="mytable" width="100%">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
@@ -118,7 +118,7 @@
                 ?>
                         </tbody>
                     </table>
-                    <!-- </div> -->
+                    <!-- </div> -->                    
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
 <script>
 $(document).ready(function() {
     $('#mytable').DataTable({
-        // "scrollX": true
+        "scrollX": true
     });
 });
 
