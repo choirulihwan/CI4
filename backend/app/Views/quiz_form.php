@@ -142,13 +142,13 @@ endif;
                         <label for="question" class="col-sm-2 col-form-label">Pilihan Jawaban</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan a"
-                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? $options[0]['title'] : ''?>">
+                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? str_replace('"', '&quot;', str_replace('<', '&lt;', str_replace('>', '&gt;', $options[0]['title']))) : ''?>">
                             <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan b"
-                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? $options[1]['title'] : ''?>">
+                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? str_replace('"', '&quot;', str_replace('<', '&lt;', str_replace('>', '&gt;', $options[1]['title']))) : ''?>">
                             <input type="text" class="form-control mb-1" name="pilihan[]" placeholder="Pilihan c"
-                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? $options[2]['title'] : ''?>">
+                                value="<?=(($uri->getSegment(2) === 'edit') && ($question['jns_pertanyaan'] === '1')) ? str_replace('"', '&quot;', str_replace('<', '&lt;', str_replace('>', '&gt;', $options[2]['title']))) : ''?>">
                             <input type="text" class="form-control" name="pilihan[]" placeholder="Pilihan d"
-                                value="<?=(($uri->getSegment(2) === 'edit') && (count($options) == 4) && ($question['jns_pertanyaan'] === '1')) ? $options[3]['title'] : ''?>">
+                                value="<?=(($uri->getSegment(2) === 'edit') && (count($options) == 4) && ($question['jns_pertanyaan'] === '1')) ? str_replace('"', '&quot;', str_replace('<', '&lt;', str_replace('>', '&gt;', $options[3]['title']))) : ''?>">
                         </div>
                     </div>
                     <div class="form-group row">
