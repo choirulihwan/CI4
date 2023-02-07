@@ -69,7 +69,7 @@ class QuestionModel extends Model
         // return $builder->getCompiledSelect();
     }
 
-    public function getQuestionComplete($cat = null, $jns = null, $kelas = null, $urutan = null) {
+    public function getQuestionComplete($cat = null, $jns = null, $kelas = null) {
         $this->db = \Config\Database::connect();
         $builder = $this->db->table('questions a'); 
         $builder->join('options b', 'a.id = b.id_question', 'left');        
@@ -87,7 +87,7 @@ class QuestionModel extends Model
             $builder->where('kelas', $kelas);
         endif;
 
-        $builder->orderBy('id', $urutan);                     
+        // $builder->orderBy('id', $urutan);                     
 
         $result = $builder->get()->getResult();  
            

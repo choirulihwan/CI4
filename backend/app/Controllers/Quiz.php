@@ -12,16 +12,16 @@ class Quiz extends ResourceController
     use ResponseTrait;
     public function index()
     {
-        $limit = 20;
-        $model = new QuestionModel();
-        $data = $model->getQuestionComplete();
-        shuffle($data);
+        // $limit = 20;
+        // $model = new QuestionModel();
+        // $data = $model->getQuestionComplete();
+        // shuffle($data);
         
-        for($i=0;$i<$limit;$i++):
-            $data2[$i] = $data[$i];
-        endfor;
+        // for($i=0;$i<$limit;$i++):
+        //     $data2[$i] = $data[$i];
+        // endfor;
         
-        return ($data2) ? $this->respond($data2) : $this->failNotFound();   
+        // return ($data2) ? $this->respond($data2) : $this->failNotFound();   
         
     }
 
@@ -39,18 +39,25 @@ class Quiz extends ResourceController
         $rand = $data_rand['keterangan'];
 
         $model = new QuestionModel();
-        $data = $model->getQuestionComplete($id, $jns, $kelas, $rand, $limit);
+        $data = $model->getQuestionComplete($id, $jns, $kelas);
         
         $jml = count($data);
         if ($jml < $limit):
             $limit = $jml;
         endif;
         
-        // shuffle($data);
-        
         for($i=0;$i<$limit;$i++):            
             $data2[$i] = $data[$i];            
         endfor;
+
+        if ($rand == 'rand'):
+            shuffle($data2);
+        elseif($rand == 'desc'):            
+            $temp = $data2;
+            for($i=0;$i<count($temp);$i++):
+                $data2[$i] = $temp[count($temp)-($i+1)];
+            endfor;
+        endif;
         
         return ($data2) ? $this->respond($data2) : $this->failNotFound();
     }
