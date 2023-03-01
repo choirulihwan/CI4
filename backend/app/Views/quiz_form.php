@@ -64,6 +64,12 @@ endif;
                             else:
                                 $kelas_selected = '';
                             endif;
+                        elseif ($uri->getSegment(2) === 'new'):
+                            if($v['id'] == $id_kelas):
+                                $kelas_selected = 'selected';
+                            else:
+                                $kelas_selected = '';
+                            endif; 
                         endif;
                     ?>
                             <option value="<?=$v['id']?>" <?=$kelas_selected?>><?=$v['nama']?></option>

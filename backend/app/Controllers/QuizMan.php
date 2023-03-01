@@ -44,7 +44,7 @@ class QuizMan extends BaseController
         return view('quiz_list', $result);
     }
 
-    public function create($id_cat = null)
+    public function create($id_cat = null, $id_kelas = null)
     {
         $session = \Config\Services::session();
         
@@ -60,6 +60,7 @@ class QuizMan extends BaseController
         $sekolah = $oref->findByIdRef('NSS');
         $data['sekolah'] = $sekolah;
         $data['id_cat'] = $id_cat;
+        $data['id_kelas'] = $id_kelas;
         
         if($isDataValid){
             $model = new QuestionModel();            
