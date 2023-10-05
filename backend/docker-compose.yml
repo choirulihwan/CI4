@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  app:
+    build:      
+      context: ./
+      dockerfile: Dockerfile
+    image: cbt-server
+    container_name: cbt-server-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - cbt-server
+  
+  db:
+    image: mariadb:10.4
+    container_name: cbt-server-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: cbt_database
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"     
+    volumes:
+      - ./_dump/mysql:/var/lib/mysql
+      #- ./_dump/drugvisi_fullstack.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - cbt-server
+  
+  nginx:
+    image: nginx:alpine
+    container_name: cbt-server-nginx
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - cbt-server
+
+networks:
+  cbt-server:
+    name: cbt-server
+    

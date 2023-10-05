@@ -44,7 +44,7 @@ $uri = service('uri');
 						<a class="nav-link" href="<?=base_url('users/chpass') ?>">Ganti password</a>	
 					</li>
 					<li class="nav-item">	
-						<a class="nav-link" href="<?=base_url('users/logout') ?>">Signout</a>	
+						<a class="nav-link" href="<?=base_url('users/logout') ?>">Sign out</a>	
 					</li>			
 				</ul>				
 			</div>
