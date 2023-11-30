@@ -7,6 +7,10 @@ use CodeIgniter\Config\BaseConfig;
 class MyConfig extends BaseConfig
 {
     public $kelas  = [
+        ['id' => '11', 'nama' => 'Kelas 1 Semester Ganjil'],
+        ['id' => '12', 'nama' => 'Kelas 1 Semester Genap'],
+        ['id' => '21', 'nama' => 'Kelas 2 Semester Ganjil'],
+        ['id' => '22', 'nama' => 'Kelas 2 Semester Genap'],
         ['id' => '31', 'nama' => 'Kelas 3 Semester Ganjil'],
         ['id' => '32', 'nama' => 'Kelas 3 Semester Genap'],
         ['id' => '41', 'nama' => 'Kelas 4 Semester Ganjil'],
